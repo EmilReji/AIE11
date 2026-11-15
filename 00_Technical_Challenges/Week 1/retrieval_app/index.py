@@ -61,7 +61,13 @@ def embed_texts(texts: list[str]) -> np.ndarray:
     result in np.array(). Print `response.usage` once — knowing what a corpus
     costs to embed is the number that decides architecture at scale.
     """
-    raise NotImplementedError("Write embed_texts() in retrieval_app/index.py")
+    embeddings_list = []
+    response = client().embeddings.create(input=texts, model=EMBEDDING_MODEL)
+    print(response.usage)
+    embeddings_data = response.data
+    for embedding_data in embeddings_data:
+        embeddings_list.append(embedding_data.embedding)
+    return np.array(embeddings_list)
 
 
 def cosine_similarity(a: np.ndarray, b: np.ndarray) -> float:
@@ -70,7 +76,14 @@ def cosine_similarity(a: np.ndarray, b: np.ndarray) -> float:
     Hint: the dot product, divided by the product of the two norms.
     NumPy has `np.dot` and `np.linalg.norm`.
     """
-    raise NotImplementedError("Write cosine_similarity() in retrieval_app/index.py")
+    dot_product = np.dot(a, b)
+    norm_a = np.linalg.norm(a)
+    norm_b = np.linalg.norm(b)
+
+    if norm_a * norm_b == 0:
+        raise ValueError("Can't divide by zero.")
+
+    return dot_product / (norm_a * norm_b)
 
 
 def build_index(chunks: list[str]) -> np.ndarray:
@@ -87,7 +100,10 @@ def build_index(chunks: list[str]) -> np.ndarray:
     Hint: this is mostly a call to embed_texts(). Notice that it happens once
     per process, and that a fresh process has no memory of the last one.
     """
-    raise NotImplementedError("Write build_index() in retrieval_app/index.py")
+    if len(chunks) == 0:
+        raise ValueError("Chunks shouldn't be empty.")
+
+    return embed_texts(chunks)
 
 
 def search(query: str, chunks: list[str], matrix: np.ndarray, k: int = 3) -> list[Hit]:
@@ -110,4 +126,25 @@ def search(query: str, chunks: list[str], matrix: np.ndarray, k: int = 3) -> lis
       - Read the signature again: it says "up to k". Nothing here forces you to
         return exactly k. That freedom is the whole of Step 4's threshold option.
     """
-    raise NotImplementedError("Write search() in retrieval_app/index.py")
+    if k <= 0:
+        raise ValueError("The k value must be positive.")
+
+    if len(chunks) != len(matrix):
+        raise ValueError(
+            "The number of chunks must match the number of embedding rows."
+        )
+
+    response = client().embeddings.create(input=query, model=EMBEDDING_MODEL)
+    print(response.usage)
+    query_embedding = np.array(response.data[0].embedding)
+
+    hits = []
+
+    for index, chunk in enumerate(chunks):
+        comparison_value = cosine_similarity(query_embedding, matrix[index])
+        hit = Hit(chunk_id=index, text=chunk, score=comparison_value)
+        hits.append(hit)
+
+    hits.sort(key=lambda hit_obj: hit_obj.score, reverse=True)
+
+    return hits[0:k]

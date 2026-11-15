@@ -5,11 +5,12 @@ in the pipeline to change and often the most effective.
 """
 
 from .index import Hit, client
+from openai.types.chat import ChatCompletionMessageParam
 
 CHAT_MODEL = "gpt-4.1-mini"
 
 
-def build_messages(question: str, hits: list[Hit]) -> list[dict]:
+def build_messages(question: str, hits: list[Hit]) -> list[ChatCompletionMessageParam]:
     """Assemble the messages list sent to the chat model.
 
     Args:
@@ -31,14 +32,53 @@ def build_messages(question: str, hits: list[Hit]) -> list[dict]:
     Hint: Session 2's RAG_SYSTEM_TEMPLATE is a good starting point, and a
     better one once you have read Step 3's failures and edited it.
     """
-    raise NotImplementedError("Write build_messages() in retrieval_app/answer.py")
+
+    system_text = """You are a helpful personal wellness assistant that answers health and wellness questions based strictly on provided context.
+    Instructions:
+- Only answer questions using information from the provided context
+- If the context doesn't contain relevant information, respond with "I don't have information about that in my wellness knowledge base"
+- Be accurate and cite specific parts of the context when possible
+- Keep responses concise and brief
+- Only use the provided context. Do not use external knowledge.
+- Include a gentle reminder that users should consult healthcare professionals for medical advice when appropriate
+- Only provide answers when you are confident the context supports your response.
+    """
+
+    system_message: ChatCompletionMessageParam = {
+        "role": "system",
+        "content": system_text,
+    }
+    messages: list[ChatCompletionMessageParam] = [system_message]
+    user_message_text = question
+
+    for hit in hits:
+        user_message_text = f"${user_message_text}\n[chunk {hit.chunk_id}]\n{hit.text}"
+    if len(hits) == 0:
+        user_message_text: str = f"{user_message_text}\n No context was found."
+
+    print(user_message_text)
+
+    user_message: ChatCompletionMessageParam = {
+        "role": "user",
+        "content": user_message_text,
+    }
+
+    messages.append(user_message)
+    return messages
 
 
-def answer(question: str, hits: list[Hit]) -> str:
+def answer(question: str, hits: list[Hit]) -> str | None:
     """Call the chat model and return its reply as a string.
 
     Hint: `client().chat.completions.create(model=CHAT_MODEL, messages=...)`,
     then dig out `.choices[0].message.content`. Look up what `temperature`
     does to your results when you run the same question twice.
     """
-    raise NotImplementedError("Write answer() in retrieval_app/answer.py")
+    messages = build_messages(question, hits)
+
+    completions_result = client().chat.completions.create(
+        model=CHAT_MODEL, messages=messages
+    )
+    output = completions_result.choices[0].message.content
+
+    return output

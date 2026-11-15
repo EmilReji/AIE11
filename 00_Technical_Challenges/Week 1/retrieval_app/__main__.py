@@ -42,9 +42,20 @@ def find_corpus() -> tuple[Path | None, list[Path]]:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="retrieval_app", description=__doc__)
     parser.add_argument("question", help="the question to answer")
-    parser.add_argument("-k", type=int, default=3, help="how many chunks to retrieve (default: 3)")
-    parser.add_argument("--corpus", type=Path, default=None, help="the .txt file to search (default: the one in data/)")
-    parser.add_argument("--show-chunks", action="store_true", help="print the retrieved text, not just the citations")
+    parser.add_argument(
+        "-k", type=int, default=3, help="how many chunks to retrieve (default: 3)"
+    )
+    parser.add_argument(
+        "--corpus",
+        type=Path,
+        default=None,
+        help="the .txt file to search (default: the one in data/)",
+    )
+    parser.add_argument(
+        "--show-chunks",
+        action="store_true",
+        help="print the retrieved text, not just the citations",
+    )
     args = parser.parse_args(argv)
 
     # Load OPENAI_API_KEY from the .env file next to this package.
@@ -62,7 +73,10 @@ def main(argv: list[str] | None = None) -> int:
                 print(f"No .txt file in {DATA_DIR}/", file=sys.stderr)
                 print("  Put one there, or point at it with --corpus", file=sys.stderr)
             else:
-                print(f"More than one .txt in {DATA_DIR}/ - say which one:", file=sys.stderr)
+                print(
+                    f"More than one .txt in {DATA_DIR}/ - say which one:",
+                    file=sys.stderr,
+                )
                 for candidate in found:
                     print(f"  --corpus data/{candidate.name}", file=sys.stderr)
             return 2
@@ -76,7 +90,11 @@ def main(argv: list[str] | None = None) -> int:
     chunks = corpus_stage.split_corpus(text)
     # Both numbers are printed on purpose. Your chunk count is checkable from
     # the character count: see "Does my splitter work?" in the README.
-    print(f"corpus {corpus_path.name}: {len(text):,} characters -> {len(chunks)} chunks", file=sys.stderr, flush=True)
+    print(
+        f"corpus {corpus_path.name}: {len(text):,} characters -> {len(chunks)} chunks",
+        file=sys.stderr,
+        flush=True,
+    )
 
     matrix = index_stage.build_index(chunks)
     indexed = time.perf_counter()
