@@ -29,7 +29,8 @@ def load_corpus(path: Path) -> str:
         data = f.read()
     except Exception as error:
         raise (error)
-    f.close()
+    finally:
+        f.close()
 
     return data
 

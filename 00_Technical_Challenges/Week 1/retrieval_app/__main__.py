@@ -104,7 +104,10 @@ def main(argv: list[str] | None = None) -> int:
     reply = answer_stage.answer(args.question, hits)
 
     print(f"\nQ: {args.question}\n")
-    print(reply)
+    if reply is None:
+        print("No response was generated. Please try again later.")
+    else:
+        print(reply)
 
     # Every answer names its sources. This is not decoration: an answer a user
     # cannot trace is a rumour, and in Week 4 you debug wrong answers by chunk.

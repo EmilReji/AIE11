@@ -37,7 +37,9 @@ def build_messages(question: str, hits: list[Hit]) -> list[ChatCompletionMessage
     Instructions:
 - Only answer questions using information from the provided context
 - If the context doesn't contain relevant information, respond with "I don't have information about that in my wellness knowledge base"
-- Be accurate and cite specific parts of the context when possible
+- Be accurate and cite specific parts of the context by placing the supporting [chunk ID] beside each factual claim
+- If no chunks support some claim or data, then be sure to explain that the context doesn't provide the information instead of making the claim or adding the data
+- Don't add citations unless they are supplied by the context
 - Keep responses concise and brief
 - Only use the provided context. Do not use external knowledge.
 - Include a gentle reminder that users should consult healthcare professionals for medical advice when appropriate
@@ -52,11 +54,9 @@ def build_messages(question: str, hits: list[Hit]) -> list[ChatCompletionMessage
     user_message_text = question
 
     for hit in hits:
-        user_message_text = f"${user_message_text}\n[chunk {hit.chunk_id}]\n{hit.text}"
+        user_message_text = f"{user_message_text}\n[chunk {hit.chunk_id}]\n{hit.text}"
     if len(hits) == 0:
         user_message_text: str = f"{user_message_text}\n No context was found."
-
-    print(user_message_text)
 
     user_message: ChatCompletionMessageParam = {
         "role": "user",
