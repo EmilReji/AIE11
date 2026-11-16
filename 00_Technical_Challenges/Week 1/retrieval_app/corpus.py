@@ -35,6 +35,14 @@ def load_corpus(path: Path) -> str:
     return data
 
 
+def remove_contents_corpus(text: str) -> str:
+    """Removing table of contents. Won't work on another data source"""
+
+    output = text.split("\n", 300)
+
+    return output[300]
+
+
 def split_corpus(
     text: str, chunk_size: int = 1000, chunk_overlap: int = 200
 ) -> list[str]:

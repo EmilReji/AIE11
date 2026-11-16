@@ -87,7 +87,8 @@ def main(argv: list[str] | None = None) -> int:
     started = time.perf_counter()
 
     text = corpus_stage.load_corpus(corpus_path)
-    chunks = corpus_stage.split_corpus(text)
+    trimmed_text = corpus_stage.remove_contents_corpus(text)
+    chunks = corpus_stage.split_corpus(trimmed_text)
     # Both numbers are printed on purpose. Your chunk count is checkable from
     # the character count: see "Does my splitter work?" in the README.
     print(

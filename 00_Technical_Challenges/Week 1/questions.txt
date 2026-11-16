@@ -1,0 +1,10 @@
+How can I reduce attack vectors on my react redux front end UI? How can I reduce attack vectors on my RAG application?
+How many levels are defined by Application Security Verification Standard?
+How do HTTPS and TLS relate? How should code with concurrency need to be kept safe? How should UUIDs be used?
+What is the link to OWASP's Internet of Things documentation?
+How should remote procedure calls be used to ensure security?
+What is an RFC?
+What are the security rules to follow when using AWS?
+What is the link to OWASP's policy on using docker?
+What year is it?
+Where am I located?
