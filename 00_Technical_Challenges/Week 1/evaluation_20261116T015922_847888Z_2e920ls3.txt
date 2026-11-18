@@ -1,0 +1,366 @@
+Run (UTC): 20261116T015922_847888Z
+Questions file: ./00_Technical_Challenges/Week 1/questions.txt
+Corpus: ./00_Technical_Challenges/Week 1/data/OWASP_Application_Security_Verification_Standard_5.0.0_en.txt
+Questions: 10
+k: 3
+Timeout per question: 300s
+Chunk display: CLI previews (up to 400 characters each)
+Execution success does not imply answer correctness.
+
+========================================================================
+Question 1/10
+Input: How can I reduce attack vectors on my react redux front end UI? How can I reduce attack vectors on my RAG application?
+Exit status: 0
+Duration: 7.25s
+
+STDOUT:
+Usage(prompt_tokens=71120, total_tokens=71120)
+Usage(prompt_tokens=26, total_tokens=26)
+
+Q: How can I reduce attack vectors on my react redux front end UI? How can I reduce attack vectors on my RAG application?
+
+To reduce attack vectors on your React Redux front-end UI:
+
+- Enforce client-side input validation in addition to validation at a trusted service layer to help detect bypass attempts of client-side controls. This offers a good opportunity to discover attacks on the UI [chunk 361].
+- Prevent accidentally accessible and sensitive pages from appearing in search engines by using a robots.txt file, the X-Robots-Tag response header, or a robots HTML meta tag [chunk 361].
+- Implement a publicly available security.txt file to allow external security issue reports [chunk 361].
+- For additional protections especially with third-party or risky components, consider sandboxing, encapsulation, containerization, or network-level isolation to deter attackers from pivoting within the application [chunk 266].
+- Avoid insecure coding patterns typical in JavaScript frameworks, including vulnerabilities like prototype pollution or mass assignment issues, by ensuring that data fields that should not be writable are not modifiable by user input and that API responses selectively return data fields based on user permissions [chunk 267].
+
+Regarding a Retrieval-Augmented Generation (RAG) application, the context only mentions that for GraphQL (commonly used in RAG applications), authorization logic should be implemented at the business logic layer rather than at the GraphQL or resolver layers to reduce the need for repeated authorization checks and to centralize the security control [chunk 361].
+
+Please consult with software and security professionals to confirm these strategies and tailor them to your specific application context.
+
+Sources:
+  [chunk 361] trength meter should provided to help users set a stronger p... (score 0.472)
+      trength meter should provided to help users set a stronger password. • Create a publicly available security.txt file at the root or .well‑known directory of the application that clearly defines a link or e‑mail address for people to contact owners about security issues. • Client‑side input validation should be enforced in addition to validation at a trusted service layer as this provides a good op...
+  [chunk 266] ll of their transitive dependencies 3 are included from the ... (score 0.469)
+      ll of their transitive dependencies 3 are included from the expected repository, whether internally owned or an external source, and that there is no risk of a dependency confusion attack. 15.2.5 Verify that the application implements additional protections around parts 3 of the application which are documented as containing “dangerous functionality”or using third‑party libraries considered to be ...
+  [chunk 267] ng This section covers vulnerability types, including type j... (score 0.468)
+      ng This section covers vulnerability types, including type juggling, prototype pollution, and others, which result from using insecure coding patterns in a particular language. Some may not be relevant to all languages, whereas others will have language‑specific fixes or may relate to how a particular language or framework handles a feature such as HTTP parameters. It also considers the risk of no...
+
+STDERR:
+corpus OWASP_Application_Security_Verification_Standard_5.0.0_en.txt: 328,802 characters -> 381 chunks
+indexed in 3.35s
+
+total 6.87s
+
+Manual result (PASS/FAIL):
+Failure stage and notes:
+
+========================================================================
+Question 2/10
+Input: How many levels are defined by Application Security Verification Standard?
+Exit status: 0
+Duration: 3.82s
+
+STDOUT:
+Usage(prompt_tokens=71120, total_tokens=71120)
+Usage(prompt_tokens=11, total_tokens=11)
+
+Q: How many levels are defined by Application Security Verification Standard?
+
+The Application Security Verification Standard (ASVS) defines three levels as part of its three-tier model. Level 1 is designed as the initial step to adopting the standard, and the levels are based on priority evaluation considering risk reduction versus effort for requirement implementation [chunk 4, chunk 19]. 
+
+Please consult software and security professionals to confirm how these levels apply to your specific situation.
+
+Sources:
+  [chunk 4] Application, Security, Verification, and Stan‑ dard. Require... (score 0.713)
+      Application, Security, Verification, and Stan‑ dard. Requirements have been rewritten to emphasize the prevention of security flaws rather than mandating specific technical implementations. Requirement texts are intended to be self‑ explanatory, explaining why they exist. 8 Application Security Verification Standard May 2025 • Support for Documented Security Decisions: ASVS 5.0 introduces requirem...
+  [chunk 133] 46 Application Security Verification Standard May 2025 # Des... (score 0.707)
+      46 Application Security Verification Standard May 2025 # Description Level 6.3.3 Verify that either a multi‑factor authentication mechanism or a combination 2 of single‑factor authentication mechanisms, must be used in order to access the application. For L3, one of the factors must be a hardware‑based authentication mechanism which provides compromise and impersonation resistance against phishing...
+  [chunk 19] ity Verification Standard May 2025 Level evaluation Levels a... (score 0.698)
+      ity Verification Standard May 2025 Level evaluation Levels are defined by priority‑based evaluation of each requirement based on experience implement‑ ing and testing security requirements. The main focus is on comparing risk reduction with the effort to implement the requirement. Another key factor is to keep a low barrier to entry. Risk reduction considers the extent to which the requirement red...
+
+STDERR:
+corpus OWASP_Application_Security_Verification_Standard_5.0.0_en.txt: 328,802 characters -> 381 chunks
+indexed in 1.81s
+
+total 3.48s
+
+Manual result (PASS/FAIL):
+Failure stage and notes:
+
+========================================================================
+Question 3/10
+Input: How do HTTPS and TLS relate? How should code with concurrency need to be kept safe? How should UUIDs be used?
+Exit status: 0
+Duration: 4.47s
+
+STDOUT:
+Usage(prompt_tokens=71120, total_tokens=71120)
+Usage(prompt_tokens=25, total_tokens=25)
+
+Q: How do HTTPS and TLS relate? How should code with concurrency need to be kept safe? How should UUIDs be used?
+
+1. HTTPS (HyperText Transfer Protocol over SSL/TLS) is a method of securing HTTP communication by encrypting the data between the client and server using TLS (Transport Layer Security) protocols. HTTPS ensures that communication is conducted securely over TLS, protecting data from interception and tampering [chunk 304].
+
+2. For code involving concurrency, the context doesn't provide detailed guidance or specifics about concurrency safety [chunks provided do not discuss concurrency aspects].
+
+3. Regarding UUIDs, the context notes that UUIDs do not meet the criteria of having at least 128 bits of entropy generated by a cryptographically secure pseudo-random number generator (CSPRNG). It is important to verify that any random number generation mechanism used is designed to work securely, even under heavy demand [chunk 226].
+
+Please consult software and security professionals for confirmation and implementation specifics.
+
+Sources:
+  [chunk 304] t allow a variety of different authentication methods to be ... (score 0.526)
+      t allow a variety of different authentication methods to be used including biometrics, Trusted Platform Modules (TPMs), USB security tokens, etc. • Hardware Security Module (HSM) –Hardware component that stores cryptographic keys and other secrets in a protected manner. • Hibernate Query Language (HQL) –A query language that is similar in appearance to SQL used by the Hibernate ORM library. • HTTP...
+  [chunk 226] pseudo‑random number generator (CSPRNG) and have at least 12... (score 0.496)
+      pseudo‑random number generator (CSPRNG) and have at least 128 bits of entropy. Note that UUIDs do not respect this condition. 11.5.2 Verify that the random number generation mechanism in use is designed to 3 work securely, even under heavy demand. V11.6 Public Key Cryptography Public Key Cryptography will be used where it is not possible or not desirable to share a secret key between multiple part...
+  [chunk 230] services. The general concepts promoted by this chapter incl... (score 0.493)
+      services. The general concepts promoted by this chapter include: • Ensuring that communications are encrypted externally, and ideally internally as well. • Configuring encryption mechanisms using the latest guidance, including preferred algorithms and ciphers. • Using signed certificates to ensure that communications are not being intercepted by unautho‑ rized parties. In addition to outlining gen...
+
+STDERR:
+corpus OWASP_Application_Security_Verification_Standard_5.0.0_en.txt: 328,802 characters -> 381 chunks
+indexed in 2.10s
+
+total 4.12s
+
+Manual result (PASS/FAIL):
+Failure stage and notes:
+
+========================================================================
+Question 4/10
+Input: What is the link to OWASP's Internet of Things documentation?
+Exit status: 0
+Duration: 4.70s
+
+STDOUT:
+Usage(prompt_tokens=71120, total_tokens=71120)
+Usage(prompt_tokens=13, total_tokens=13)
+
+Q: What is the link to OWASP's Internet of Things documentation?
+
+The link to OWASP's Internet of Things documentation is: https://owasp.org/www-project-internet-of-things/ [chunk 325].
+
+Please remember to consult software and security professionals to confirm this information.
+
+Sources:
+  [chunk 325] sp.org/www‑project‑mobile‑top‑10/ 3. OWASP Mobile Security T... (score 0.574)
+      sp.org/www‑project‑mobile‑top‑10/ 3. OWASP Mobile Security Testing Guide and Mobile Application Security Verification Standard: https://owasp.org/www‑project‑mobile‑security‑testing‑guide/ OWASP Internet of Things related projects 1. OWASP Internet of Things Project: https://owasp.org/www‑project‑internet‑of‑things/ OWASP Serverless projects 1. OWASP Serverless Project: https://owasp.org/www‑proje...
+  [chunk 324] roject: https://owasp.org/www‑project‑top‑ten/ 2. OWASP Web ... (score 0.503)
+      roject: https://owasp.org/www‑project‑top‑ten/ 2. OWASP Web Security Testing Guide: https://owasp.org/www‑project‑web‑security‑testing‑ guide/ 3. OWASP Proactive Controls: https://owasp.org/www‑project‑proactive‑controls/ 4. OWASP Software Assurance Maturity Model (SAMM): https://owasp.org/www‑project‑samm/ 5. OWASP Secure Headers Project: https://owasp.org/www‑project‑secure‑headers/ OWASP Cheat ...
+  [chunk 237] onfiguration guide • Mozilla’s tool to generate known good T... (score 0.466)
+      onfiguration guide • Mozilla’s tool to generate known good TLS configurations. • O‑Saft ‑ OWASP Project to validate TLS configuration V13 Configuration Control Objective The application’s default configuration must be secure for use on the Internet. 77 Application Security Verification Standard May 2025 This chapter provides guidance on the various configurations necessary to achieve this, includi...
+
+STDERR:
+corpus OWASP_Application_Security_Verification_Standard_5.0.0_en.txt: 328,802 characters -> 381 chunks
+indexed in 2.67s
+
+total 4.35s
+
+Manual result (PASS/FAIL):
+Failure stage and notes:
+
+========================================================================
+Question 5/10
+Input: How should remote procedure calls be used to ensure security?
+Exit status: 0
+Duration: 4.44s
+
+STDOUT:
+Usage(prompt_tokens=71120, total_tokens=71120)
+Usage(prompt_tokens=11, total_tokens=11)
+
+Q: How should remote procedure calls be used to ensure security?
+
+To ensure security in remote procedure calls (RPCs), the following practices should be followed:
+
+1. Use encrypted protocols such as TLS for all inbound and outbound connections, including RPCs, to ensure secure transmission and avoid falling back to insecure protocols (Requirement 12.3.1).
+
+2. TLS clients must validate certificates to prevent man-in-the-middle attacks (Requirement 12.3.2).
+
+3. Backend communications, including RPCs, between application components that do not support the application's standard user session mechanism must be authenticated using individual service accounts, short-term tokens, or certificate-based authentication. Avoid using unchanging credentials like passwords or shared privileged accounts (Requirement 13.2.1).
+
+4. Configure timeouts and limit retries to prevent cascading delays and resource exhaustion in remote calls (implied from chunk 240).
+
+These combined controls ensure secure, authenticated, and encrypted RPCs to other services or components. Always consult software and security professionals to confirm these controls fit your specific application architecture and threat model.
+
+Sources:
+  [chunk 240] rt timeouts and either disable retries or strictly limit ret... (score 0.477)
+      rt timeouts and either disable retries or strictly limit retries to prevent cascading delays and resource exhaustion. 13.1.4 Verify that the application’s documentation defines the secrets that are 3 critical for the security of the application and a schedule for rotating them, based on the organization’s threat model and business requirements. V13.2 Backend Communication Configuration Application...
+  [chunk 241] with these components and, if required, protect that configu... (score 0.470)
+      with these components and, if required, protect that configuration. 78 Application Security Verification Standard May 2025 Note: The “Secure Communication”chapter provides guidance for encryption in transit. # Description Level 13.2.1 Verify that communications between backend application components that 2 don’t support the application’s standard user session mechanism, including APIs, middleware,...
+  [chunk 234] 2.3 General Service to Service Communication Security Server... (score 0.467)
+      2.3 General Service to Service Communication Security Server communications (both internal and external) involve more than just HTTP. Connections to and from other systems must also be secure, ideally using TLS. 76 Application Security Verification Standard May 2025 # Description Level 12.3.1 Verify that an encrypted protocol such as TLS is used for all inbound and 2 outbound connections to and fr...
+
+STDERR:
+corpus OWASP_Application_Security_Verification_Standard_5.0.0_en.txt: 328,802 characters -> 381 chunks
+indexed in 1.61s
+
+total 4.07s
+
+Manual result (PASS/FAIL):
+Failure stage and notes:
+
+========================================================================
+Question 6/10
+Input: What is an RFC?
+Exit status: 0
+Duration: 4.27s
+
+STDOUT:
+Usage(prompt_tokens=71120, total_tokens=71120)
+Usage(prompt_tokens=5, total_tokens=5)
+
+Q: What is an RFC?
+
+The provided context does not include a definition or explanation of what an RFC (Request for Comments) is. Therefore, I don't have information about that in my OWASP Application Security Verification Standard Version 5.0.0 knowledge base based on the given chunks.
+
+Please consult software and security professionals to confirm this information.
+
+Sources:
+  [chunk 311] erification Standard May 2025 say they are. • Remote File In... (score 0.468)
+      erification Standard May 2025 say they are. • Remote File Inclusion (RFI) ‑ An attack that exploits vulnerable inclusion procedures in the application, resulting in the inclusion of remote files. • Scalable Vector Graphics (SVG) –An XML‑based markup language for describing two‑ dimensional based vector graphics. • Secure Real‑time Transport Protocol (SRTP) and Secure Real‑time Transport Control Pr...
+  [chunk 310] te or metadata stored on a server, sometimes referred to as ... (score 0.397)
+      te or metadata stored on a server, sometimes referred to as random tokens or opaque tokens. Unlike self‑contained tokens, which embed some of their relevant data within the token itself, reference tokens con‑ tain no intrinsic information, instead relying on the server for context. The reference token will either be or contain a session identifier. • Relying Party (RP) –Generally an application wh...
+  [chunk 309] ck a password offline if the resulting value is stored inste... (score 0.367)
+      ck a password offline if the resulting value is stored instead of the original password. • Public Key Infrastructure (PKI) –An arrangement that binds public keys with respective iden‑ tities of entities. The binding is established through a process of registration and issuance of certificates at and by a certificate authority (CA). • Public Switched Telephone Network (PSTN) –The traditional teleph...
+
+STDERR:
+corpus OWASP_Application_Security_Verification_Standard_5.0.0_en.txt: 328,802 characters -> 381 chunks
+indexed in 2.58s
+
+total 3.92s
+
+Manual result (PASS/FAIL):
+Failure stage and notes:
+
+========================================================================
+Question 7/10
+Input: What are the security rules to follow when using AWS?
+Exit status: 0
+Duration: 4.31s
+
+STDOUT:
+Usage(prompt_tokens=71120, total_tokens=71120)
+Usage(prompt_tokens=11, total_tokens=11)
+
+Q: What are the security rules to follow when using AWS?
+
+The OWASP Application Security Verification Standard v5.0.0 outlines several security rules relevant to using services such as AWS, particularly focusing on secure communication and secret management:
+
+1. Ensure encrypted protocols such as TLS are used for all inbound and outbound connections to and from the application, including connections to middleware, databases, external APIs, and partner systems. The server must not fall back to insecure or unencrypted protocols (Requirement 12.3.1) [chunk 234].
+
+2. Verify that TLS clients validate certificates to prevent man-in-the-middle attacks (Requirement 12.3.2) [chunk 234].
+
+3. Define the application's critical secrets in documentation and establish a schedule for rotating them based on the organization's threat model and business requirements (Requirement 13.1.4) [chunk 240].
+
+4. Server-to-server communications should be secure and ideally use TLS (General Service to Service Communication Security) [chunk 234].
+
+While the standard does not specifically address AWS, these principles apply to secure use of cloud services including AWS.
+
+Please consult with security and software professionals to confirm these practices fit your AWS use case.
+
+Sources:
+  [chunk 240] rt timeouts and either disable retries or strictly limit ret... (score 0.438)
+      rt timeouts and either disable retries or strictly limit retries to prevent cascading delays and resource exhaustion. 13.1.4 Verify that the application’s documentation defines the secrets that are 3 critical for the security of the application and a schedule for rotating them, based on the organization’s threat model and business requirements. V13.2 Backend Communication Configuration Application...
+  [chunk 361] trength meter should provided to help users set a stronger p... (score 0.434)
+      trength meter should provided to help users set a stronger password. • Create a publicly available security.txt file at the root or .well‑known directory of the application that clearly defines a link or e‑mail address for people to contact owners about security issues. • Client‑side input validation should be enforced in addition to validation at a trusted service layer as this provides a good op...
+  [chunk 234] 2.3 General Service to Service Communication Security Server... (score 0.429)
+      2.3 General Service to Service Communication Security Server communications (both internal and external) involve more than just HTTP. Connections to and from other systems must also be secure, ideally using TLS. 76 Application Security Verification Standard May 2025 # Description Level 12.3.1 Verify that an encrypted protocol such as TLS is used for all inbound and 2 outbound connections to and fr...
+
+STDERR:
+corpus OWASP_Application_Security_Verification_Standard_5.0.0_en.txt: 328,802 characters -> 381 chunks
+indexed in 1.31s
+
+total 3.94s
+
+Manual result (PASS/FAIL):
+Failure stage and notes:
+
+========================================================================
+Question 8/10
+Input: What is the link to OWASP's policy on using docker?
+Exit status: 0
+Duration: 4.90s
+
+STDOUT:
+Usage(prompt_tokens=71120, total_tokens=71120)
+Usage(prompt_tokens=13, total_tokens=13)
+
+Q: What is the link to OWASP's policy on using docker?
+
+I don't have information about OWASP's policy on using Docker in the provided OWASP Application Security Verification Standard Version 5.0.0 context. Please consult OWASP's official site or related project pages for the most accurate policy details. Always confirm with software and security professionals.
+
+Sources:
+  [chunk 325] sp.org/www‑project‑mobile‑top‑10/ 3. OWASP Mobile Security T... (score 0.435)
+      sp.org/www‑project‑mobile‑top‑10/ 3. OWASP Mobile Security Testing Guide and Mobile Application Security Verification Standard: https://owasp.org/www‑project‑mobile‑security‑testing‑guide/ OWASP Internet of Things related projects 1. OWASP Internet of Things Project: https://owasp.org/www‑project‑internet‑of‑things/ OWASP Serverless projects 1. OWASP Serverless Project: https://owasp.org/www‑proje...
+  [chunk 72] ty vulnerabilities or different URI or file parsing behavior... (score 0.416)
+      ty vulnerabilities or different URI or file parsing behavior being exploited in Remote File Inclusion (RFI) or Server‑side Request Forgery (SSRF) attacks. References For more information, see also: • OWASP LDAP Injection Prevention Cheat Sheet • OWASP Cross Site Scripting Prevention Cheat Sheet • OWASP DOM Based Cross Site Scripting Prevention Cheat Sheet • OWASP XML External Entity Prevention Che...
+  [chunk 104] 37 Application Security Verification Standard May 2025 • OWA... (score 0.400)
+      37 Application Security Verification Standard May 2025 • OWASP Content Security Policy Cheat Sheet • OWASP Secure Headers Project • OWASP Cross‑Site Request Forgery Prevention Cheat Sheet • HSTS Browser Preload List submission form • OWASP DOM Clobbering Prevention Cheat Sheet V4 API and Web Service Control Objective Several considerations apply specifically to applications that expose APIs for us...
+
+STDERR:
+corpus OWASP_Application_Security_Verification_Standard_5.0.0_en.txt: 328,802 characters -> 381 chunks
+indexed in 2.92s
+
+total 4.53s
+
+Manual result (PASS/FAIL):
+Failure stage and notes:
+
+========================================================================
+Question 9/10
+Input: What year is it?
+Exit status: 0
+Duration: 3.60s
+
+STDOUT:
+Usage(prompt_tokens=71120, total_tokens=71120)
+Usage(prompt_tokens=5, total_tokens=5)
+
+Q: What year is it?
+
+The year indicated in the OWASP Application Security Verification Standard Version 5.0.0 context is 2025, specifically noted as May 2025 in the document [chunk 56], [chunk 25], and [chunk 311].
+
+Please consult software and security professionals to confirm this information.
+
+Sources:
+  [chunk 56] ification Standard May 2025 and business expectations, requi... (score 0.204)
+      ification Standard May 2025 and business expectations, requirements related to this can be found in the “Validation and Business Logic”chapter. V1.1 Encoding and Sanitization Architecture In the sections below, syntax‑specific or interpreter‑specific requirements for safely processing un‑ safe content to avoid security vulnerabilities are provided. The requirements in this section cover the order ...
+  [chunk 25] third number will change. • Major release ‑ Full reorganizat... (score 0.194)
+      third number will change. • Major release ‑ Full reorganization, almost everything may have changed, including require‑ ment numbers. Reevaluation for compliance will be necessary (for example, 4.0.3 ‑> 5.0.0). • Minor release ‑ Requirements may be added or removed, but overall numbering will stay the same. Reevaluation for compliance will be necessary, but should be easier (for example, 5.0.0 ‑> ...
+  [chunk 311] erification Standard May 2025 say they are. • Remote File In... (score 0.190)
+      erification Standard May 2025 say they are. • Remote File Inclusion (RFI) ‑ An attack that exploits vulnerable inclusion procedures in the application, resulting in the inclusion of remote files. • Scalable Vector Graphics (SVG) –An XML‑based markup language for describing two‑ dimensional based vector graphics. • Secure Real‑time Transport Protocol (SRTP) and Secure Real‑time Transport Control Pr...
+
+STDERR:
+corpus OWASP_Application_Security_Verification_Standard_5.0.0_en.txt: 328,802 characters -> 381 chunks
+indexed in 1.67s
+
+total 3.25s
+
+Manual result (PASS/FAIL):
+Failure stage and notes:
+
+========================================================================
+Question 10/10
+Input: Where am I located?
+Exit status: 0
+Duration: 4.04s
+
+STDOUT:
+Usage(prompt_tokens=71120, total_tokens=71120)
+Usage(prompt_tokens=5, total_tokens=5)
+
+Q: Where am I located?
+
+I don't have information about your location in my OWASP Application Security Verification Standard Version 5.0.0 knowledge base based on the provided context. The chunks you shared list names and usernames but do not indicate location details. Please consult with appropriate software or security professionals to confirm this information.
+
+Sources:
+  [chunk 373] azana (hazanasec) David Means Alexander Stein (dmeans82) (to... (score 0.204)
+      azana (hazanasec) David Means Alexander Stein (dmeans82) (tohch4) BaeSenseii Vincent De Schutter S Bani (sbani) Mitsuaki Akiyama (baesenseii) (VincentDS) (mak1yama) Christopher Loessl victorxm Michal Rada Veeresh Devireddy (hashier) (michalradacz) (drveresh) MaknaSEO darkzero2022 Liam Frank Denis (jedisct1) (LiamDobbelaere) Otto Sulin (ottosulin) carllaw6885 Anders Johan Richard Fritsch (rfricz) H...
+  [chunk 367] rently, please let us know. Johan Sydseter luis servin (lfse... (score 0.199)
+      rently, please let us know. Johan Sydseter luis servin (lfservin) Oleksii Dovydkov IZUKA Masahiro (sydseter) (oleksiidov) (maizuka) James Sulinski Eli Saad (ThunderSon) kkshitish9 Andrew van der Stock (jsulinski) (vanderaj) Rick M (kingthorin) Bankde Eakasit Michael Gargiullo Raphael Dunant (Bankde) (mgargiullo) (Racater) Cesar Kohl (cesarkohl) inaz0 Joerg Bruenner David Deatherage (JoergBruenner)...
+  [chunk 374] itsch (rfricz) Holmefjord (aholmis) mesutgungor Scott Helme ... (score 0.184)
+      itsch (rfricz) Holmefjord (aholmis) mesutgungor Scott Helme Carlo Reggiani Suyash Srivastava (ScottHelme) (carloreggiani) (suyash5053) 117 Application Security Verification Standard May 2025 Mark Potter Arjan Lamers Gøran Breivik (gobrtg) flo‑blg (markonweb) (alamers) Guillaume Déflache Toufik Airane Keith Hoodlet Sinner (guillaume‑d) (toufik‑airane) (securingdev) (SoftwareSinner) iloving Jeroen B...
+
+STDERR:
+corpus OWASP_Application_Security_Verification_Standard_5.0.0_en.txt: 328,802 characters -> 381 chunks
+indexed in 2.04s
+
+total 3.70s
+
+Manual result (PASS/FAIL):
+Failure stage and notes:
+
+Completed: 10; execution failures/timeouts: 0
