@@ -9,7 +9,7 @@
 
 | 📰 Session | ⏺️ Recording | 🖼️ Slides | 📝 Technical Challenge | 📁 Feedback |
 |:-----------------|:------------|:----------|:--------|:------------|
-| [Agent Harness](../03_The_Agent_Harness) | [Recording!](https://us02web.zoom.us/rec/share/4wHGDjwfuUd_lcrvMkLqQnl5tMH5sR-tZcVcgZNAgWEbY3itbPhiRyxS0BLSijQV.jjzjMPXlpBXqZ2lo) <br> passcode: `D0?ns*X0` | [Slides](https://canva.link/q76alw9szgdnur7) |    [TC 2](../00_Technical_Challenges/Week%202/README.md)      |  [11/18](https://forms.gle/ZczjQE5FaTKygmae8) |
+| [Agent Harness](../03_The_Agent_Harness) | [Recording!](https://us02web.zoom.us/rec/share/4wHGDjwfuUd_lcrvMkLqQnl5tMH5sR-tZcVcgZNAgWEbY3itbPhiRyxS0BLSijQV.jjzjMPXlpBXqZ2lo) <br> passcode: `D0?ns*X0` | [Slides](https://canva.link/q76alw9szgdnur7) |    [TC 2](../00_Technical_Challenges/Week%202/README.md)      |  [11/16](https://forms.gle/ZczjQE5FaTKygmae8) |
 
 
 
